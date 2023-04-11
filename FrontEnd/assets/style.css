@@ -53,13 +53,62 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-header {
+
+.loggedInFlex{
+	display: none;
+}
+
+#edition_mode{
+	background: black;
+	max-width: none;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 50px;
+	align-items: center;
+	justify-content: center;
+	z-index: 20;
+}
+
+#edition_mode button{
+	background-color: white;
+	border-radius: 30px;
+	border: white;
+	font-size: 14px;
+	font-weight: 700;
+	color: black;
+	border-style:solid;
+	padding: 8px;
+	width: 236px ;
+	height: 38px;
+	margin-left: 10px;
+}
+#edition_mode button:hover{
+	background-color:white;
+	color:black;
+}
+
+#edition_mode p{
+	color: white;
+	
+}
+
+.project{
+	display: flex;
+	justify-content:center ;
+}
+
+.project a{
+	margin: 11px 4px;
+}
+.head {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
 section {
-	margin: 50px 0
+	margin: 50px 0 70px
 }
 
 h1{
@@ -105,9 +154,10 @@ li:hover {
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
-	margin: auto;
+	margin: 0 57px 15px 57px;
 	width: 80%;
 }
 
@@ -116,14 +166,29 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 #introduction p {
 	margin-bottom: 0.5em;
 }
+figure a{
+	margin-left:  57px;
+}
+
+.editButton{
+	color: black;
+	text-decoration: none;
+}
+
+.loggedIn{
+	display: none;
+}
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin-right: 15px;
 }
 
 .allbutton{

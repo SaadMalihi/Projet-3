@@ -1,5 +1,6 @@
 let allWorks = null
 const token = localStorage.getItem('token');
+
 async function fetchWorks() {
     const response = await fetch('http://localhost:5678/api/works');
     const works = await response.json();
@@ -33,7 +34,6 @@ fetchWorks().then(works => {
 
     fetchCategories().then(categories => {
         categories.forEach(categorie => {
-            if (!token) {
                 const nouveauBouton = document.createElement('button');
                 nouveauBouton.textContent = categorie.name;
                 nouveauBouton.id = categorie.categoryId;
@@ -47,12 +47,6 @@ fetchWorks().then(works => {
 
                 const boutonsDiv = document.querySelector('.allbutton');
                 boutonsDiv.appendChild(nouveauBouton);
-                document.getElementById('login').style.display = 'block';
-
-            } else {
-                document.getElementById('button_all').style.display = 'none';
-            }
-
         });
     })
 
@@ -64,17 +58,33 @@ function getAllWorks() {
 }
 
 function logout() {
-
     localStorage.clear();
-
 }
 
-function masquerBoutonLoginLogout() {
+function hideElement() {
     if (token) {
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('logout').style.display = 'block';
-    } else {
-        document.getElementById('login').style.display = 'block';
-        document.getElementById('logout').style.display = 'none';
+        const elementWhenUserLogged = document.querySelectorAll('.loggedIn');
+        elementWhenUserLogged.forEach(element => {
+            element.style.display ='block';
+        })
+
+        const elementToHideWhenUserLogged = document.querySelectorAll('.hideLoggedIn');
+        elementToHideWhenUserLogged.forEach(element =>{
+            element.style.display ='none';
+        })
+
+        const elementLoggedInFlex = document.querySelectorAll('.loggedInFlex');
+        elementLoggedInFlex.forEach(element =>{
+            element.style.display ='flex';
+        })
+
+        const marginTopHeader=document.querySelector('.head')
+        marginTopHeader.style.marginTop ='60px';
+
     }
 }
+
+hideElement();
+
+        
+

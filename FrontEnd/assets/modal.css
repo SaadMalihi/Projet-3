@@ -1,0 +1,179 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal_shadow, .modal_delete_shadow{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0,0, 0.5);
+}
+
+.modal_content{
+    width: 34%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.modal_index h3, .deleteIndex h3{
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    margin: 20px 0px 36px 0px;
+}
+
+.modal_bottom, .modal_delete_bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: grey solid 1px;
+    width: 80%;
+    margin-left: 10%;
+
+}
+
+.modal_bottom {
+    flex-direction: column;
+}
+
+
+.modal_bottom button , .button_delete{
+    background-color: #1d6154;
+    color: white;
+    border: none;
+    font-size: 14px;
+    width: 236px;
+    margin: 15px 0px;
+}
+
+.modal_bottom p{
+    color: red;
+}
+
+.gallery_modal{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 80%;
+    
+}
+
+.gallery_modal figure{
+    width: 18.5%;
+    margin: 4px 2px;
+}
+
+.gallery_modal img{
+    object-fit: cover;
+    width: 100%;
+    transition: .5s ease;
+}
+
+.fa-xmark{
+    position: absolute;
+    right: 20px;
+    top: 20px; 
+    font-size: 16px;
+}
+
+figure{
+    position: relative;
+}
+
+figure button{
+    border:none;
+    color: white;
+    background-color: black;
+    border-radius: 5%;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding:4px;
+    margin: 0;
+}
+
+.button_move{
+    border:none;
+    color: white;
+    background-color: black;
+    border-radius: 5%;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+    padding:4px;
+    margin: 0;
+    display: none;
+}
+
+.fa-trash-can{
+    font-size: 12px;
+}
+
+
+.modal_delete{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal_delete_content{
+    position: relative;
+    width: 26%;
+    top: 40%;
+    left: 35%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.button_cancel{
+    color: red;
+    background: white;
+    border-color: red;
+    font-size: 14px;
+}
+
+.button_cancel:hover{
+    background-color: white;
+    color: red;
+}
+
+.fa-arrow-left{
+    position: absolute;
+    top: 20px;
+    left: 23px;
+}
+
+.modal_index_work{
+    display: none;
+    flex-direction: column;
+}
+
+.modal_index_work form{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_index_work h3{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px ;
+}

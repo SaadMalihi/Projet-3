@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
+	
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,27 +10,37 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-		
+	<link rel="stylesheet" href="./assets/modal.css">
+	<script src="https://kit.fontawesome.com/4e71171e41.js" crossorigin="anonymous"></script>	
 </head>
-<body onload="masquerBoutonLoginLogout()">
+<body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<a id=login onclick='login()' href="login.html"><li>login</li></a>
-			<a id=logout  onclick='logout()' href="index.html"><li>logout</li></a>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
+	<div class='loggedInFlex' id="edition_mode">
+		<p> <i class="fa-solid fa-pen-to-square"></i> Mode edition</p>
+		<button>publier les changements</button> 
+	</div>
+	<div class="head">
+		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<nav>
+			<ul>
+				<li>projets</li>
+				<li>contact</li>
+				<a class='hideLoggedIn' onclick='login()' href="login.html"><li>login</li></a>
+				<a  class='loggedIn' id=logout  onclick='logout()' href="index.html"><li>logout</li></a>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
+		</nav>
+	</div>
+	
 </header>
 <main>
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<a class='loggedIn editButton' href="#"><i class="fa-solid fa-pen-to-square"></i>  modifier</a>
 		</figure>
 		<article>
+			<a class='loggedIn editButton' href="#"> <i class="fa-solid fa-pen-to-square"></i>  modifier</a>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -37,8 +48,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="allbutton">
+		<div class="project">
+			<h2>Mes Projets</h2>
+			<a class='loggedIn editButton' onclick="openModal()" href="#"><i class="fa-solid fa-pen-to-square"></i> modifier</a>
+		</div>
+		<div class="allbutton hideLoggedIn">
 			<button id=button_all onclick="getAllWorks()">Tous</button>
 		</div>
 		<div class="gallery">
@@ -57,8 +71,15 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
+	<aside class="modal">
+		<div  onclick='closeModal()' class="modal_shadow"></div>
+		<div class="modal_content"></div>
+		<div class="modal_delete">
+			<div class='modal_delete_shadow'></div>
+			<div class="modal_delete_content"> </div>
+		 </div>
+	</aside>
 </main>
-
 <footer>
 	<nav>
 		<ul>
@@ -67,5 +88,6 @@
 	</nav>
 </footer>
 <script src="script.js" async></script>
+<script src="modal.js"></script>
 </body>
 </html>

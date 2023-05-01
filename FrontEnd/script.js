@@ -1,6 +1,14 @@
 let allWorks = null
 const token = sessionStorage.getItem('token');
 
+init()
+
+function init() {
+    logout()
+    getAllWorksFilterButton()
+    hideElement()
+}
+
 async function fetchWorks() {
     const response = await fetch('http://localhost:5678/api/works');
     const works = await response.json();
@@ -14,7 +22,7 @@ function displayWorks(figure) {
     });
 }
 
-function displayWorkGallery(element){
+function displayWorkGallery(element) {
     const figElement = document.createElement('figure');
     figElement.id = element.id;
     const imageElement = document.createElement('img');
@@ -41,7 +49,7 @@ fetchWorks().then(works => {
             const nouveauBouton = document.createElement('button');
             nouveauBouton.textContent = categorie.name;
             nouveauBouton.id = categorie.categoryId;
-            nouveauBouton.addEventListener('click', function() {
+            nouveauBouton.addEventListener('click', function () {
 
                 const result = works.filter(work => work.categoryId === categorie.id)
                 document.querySelector(".gallery").innerHTML = "";
@@ -56,13 +64,20 @@ fetchWorks().then(works => {
 
 });
 
-function getAllWorks() {
-    document.querySelector(".gallery").innerHTML = "";
-    displayWorks(allWorks);
+function getAllWorksFilterButton() {
+    const buttonAllforFilter = document.getElementById('button_all')
+    buttonAllforFilter.addEventListener('click', function () {
+        document.querySelector(".gallery").innerHTML = "";
+        displayWorks(allWorks);
+    })
 }
 
 function logout() {
-    sessionStorage.clear();
+    const buttonToLogout = document.getElementById('logout')
+    buttonToLogout.addEventListener('click', function () {
+        sessionStorage.clear()
+    }
+    )
 }
 
 function hideElement() {
@@ -88,4 +103,3 @@ function hideElement() {
     }
 }
 
-hideElement();

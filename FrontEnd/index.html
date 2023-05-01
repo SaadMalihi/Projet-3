@@ -28,10 +28,10 @@
 				<ul>
 					<li>projets</li>
 					<li>contact</li>
-					<a class='hideLoggedIn' onclick='login()' href="login.html">
+					<a class='hideLoggedIn' href="login.html">
 						<li>login</li>
 					</a>
-					<a class='loggedIn' id=logout onclick='logout()' href="index.html">
+					<a class='loggedIn' id=logout  href="index.html">
 						<li>logout</li>
 					</a>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
@@ -61,11 +61,11 @@
 		<section id="portfolio">
 			<div class="project">
 				<h2>Mes Projets</h2>
-				<a class='loggedIn editButton' onclick="openModal()" href="#"><i class="fa-solid fa-pen-to-square"></i>
+				<a class='loggedIn editButton openModal' href="#"><i class="fa-solid fa-pen-to-square"></i>
 					modifier</a>
 			</div>
 			<div class="allbutton hideLoggedIn">
-				<button id=button_all onclick="getAllWorks()">Tous</button>
+				<button id=button_all>Tous</button>
 			</div>
 			<div class="gallery">
 			</div>
@@ -86,7 +86,7 @@
 
 		</section>
 		<aside class="modal">
-			<div onclick='closeModal()' class="modal_shadow"></div>
+			<div  class="modal_shadow"></div>
 			<div class="modal_content"></div>
 			<div class="modal_delete">
 				<div class='modal_delete_shadow'></div>
@@ -104,5 +104,4 @@
 	<script src="script.js" async></script>
 	<script src="modal.js"></script>
 </body>
-
 </html>

@@ -5,7 +5,8 @@ initModal();
 
 function initModal() {
     initModalContent()
-    closeModalWithCross()
+    openModal()
+    closeModalWithCrossAndModalShadow()
     modalToAddWorks()
     openModalWork()
     fetchCategorieForm()
@@ -13,20 +14,21 @@ function initModal() {
 }
 
 function openModal() {
+    const buttonEdit = document.querySelector('.openModal')
     const modal = document.querySelector('.modal');
-    modal.style.display = "flex";
-
+    buttonEdit.addEventListener('click', function () {
+        modal.style.display = "flex"
+    })
 };
 
-function closeModal() {
-    const modal = document.querySelector('.modal');
-    modal.style.display = "none";
-};
-
-function closeModalWithCross() {
+function closeModalWithCrossAndModalShadow() {
+    const modalShadow = document.querySelector('.modal_shadow');
     const cross = document.querySelector('.fa-xmark');
     const modal = document.querySelector('.modal');
     cross.addEventListener('click', function () {
+        modal.style.display = "none";
+    })
+    modalShadow.addEventListener('click', function () {
         modal.style.display = "none";
     })
 }
@@ -47,7 +49,6 @@ function initModalContent() {
     const gallery = document.createElement('div')
     gallery.classList = 'gallery_modal'
     modalIndex.appendChild(gallery)
-
 
     const modalBottom = document.createElement('div')
     modalBottom.classList = 'modal_bottom'
@@ -73,7 +74,6 @@ function fetchWorksModal() {
 
 fetchWorksModal()
 
-
 function displayWorksModal(figureModal) {
     figureModal.forEach(element => {
         displayWorkModal(element)
@@ -89,9 +89,11 @@ function displayWorkModal(element) {
     imageModal.src = element.imageUrl
     const buttonTrashFigure = document.createElement('button')
     buttonTrashFigure.classList = 'trash_button'
+
     buttonTrashFigure.addEventListener('click', function () {
         modalDelete.style.display = "block";
     })
+
     setWorkToDelete(buttonTrashFigure, element.id)
     const iconTrashButton = document.createElement('i')
     const buttonMoveFigure = document.createElement('button')
@@ -99,10 +101,12 @@ function displayWorkModal(element) {
     const iconMoveButton = document.createElement('i')
     iconMoveButton.classList = 'fa-solid fa-up-down-left-right'
     iconTrashButton.classList = 'fa-solid fa-trash-can'
+
     figModal.appendChild(buttonMoveFigure)
     figModal.appendChild(buttonTrashFigure)
     buttonMoveFigure.appendChild(iconMoveButton)
     buttonTrashFigure.appendChild(iconTrashButton)
+
     const figCaptionModal = document.createElement('figcaption')
     figCaptionModal.innerHTML = 'editer'
 
@@ -138,8 +142,6 @@ function closeModalDelete() {
     })
 }
 
-
-
 function modalDeleteConfirmation(id) {
     const modalDeleteIndex = document.createElement('div');
     modalDeleteIndex.classList = 'deleteIndex'
@@ -151,7 +153,6 @@ function modalDeleteConfirmation(id) {
     const titleDelete = document.createElement('h3')
     titleDelete.innerHTML = 'Êtes-vous sûr de vouloir supprimer?'
     modalDeleteIndex.appendChild(titleDelete)
-
 
     const modalDeleteBottom = document.createElement('div')
     modalDeleteBottom.classList = 'modal_delete_bottom'
@@ -171,14 +172,13 @@ function modalDeleteConfirmation(id) {
         deleteIndex.remove();
         clickArrow.remove();;
     });
+
     const buttonCancel = document.createElement('button')
     buttonCancel.innerHTML = 'Annuler'
     buttonCancel.classList = 'button_cancel'
     modalDeleteIndex.appendChild(modalDeleteBottom)
     modalDeleteBottom.appendChild(buttonCancel)
     modalDeleteBottom.appendChild(buttonDelete)
-
-
 }
 
 function setWorkToDelete(buttonTrash, id) {
@@ -297,7 +297,6 @@ function modalToAddWorks() {
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
     submitButton.classList = 'button_validate_form';
-    submitButton.disabled = true
     submitButton.textContent = "Valider";
     divForButtonBottom.appendChild(submitButton);
 
@@ -330,10 +329,8 @@ function openModalWork() {
     crossClose.addEventListener('click', function () {
         modalToOpen.style.display = "none";
         modalToClose.style.display = "block";
-
     })
     updateButton()
-
 }
 
 function fetchCategorieForm() {
@@ -353,13 +350,19 @@ function fetchCategorieForm() {
         })
 }
 
-
 function resetFormTextField() {
+    const buttonToPost = document.querySelector('.button_validate_form')
     const formPhoto = document.querySelector('.form_photo');
     const closeButtonCross = document.querySelector('.fa-xmark');
     const returnButtonArrow = document.querySelector('.popupArrowWork');
     const modalShadowClose = document.querySelector('.modal_shadow');
     const imageToPreview = document.querySelector('.image_preview');
+
+    buttonToPost.addEventListener('click', function () {
+        formPhoto.reset();
+        imageToPreview.src = '';
+        updateButton()
+    })
 
     closeButtonCross.addEventListener('click', function () {
         formPhoto.reset();
@@ -378,9 +381,6 @@ function resetFormTextField() {
         imageToPreview.src = '';
         updateButton()
     })
-
-
-
 }
 
 function previewPhotoOnForm(e) {
@@ -392,7 +392,6 @@ function previewPhotoOnForm(e) {
         image.src = reader.result
     })
     reader.readAsDataURL(input.files[0]);
-
 }
 
 function updateButton() {
@@ -412,7 +411,6 @@ function updateButton() {
         submitButton.style.backgroundColor = 'grey';
         submitButton.setAttribute('disabled', true);
     }
-
 }
 
 function clickButtonPost() {
@@ -427,7 +425,6 @@ function clickButtonPost() {
     });
 }
 
-
 function submitForm() {
 
     const inputText = document.querySelector('.input_titre');
@@ -439,7 +436,6 @@ function submitForm() {
     formData.append('title', inputText.value);
     formData.append('image', inputImage.files[0]);
     formData.append('category', selectedOption.getAttribute('value'));
-
 
     fetch('http://localhost:5678/api/works/', {
         method: 'POST',

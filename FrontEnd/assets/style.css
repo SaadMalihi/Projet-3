@@ -183,6 +183,11 @@ body {
 
 }
 
+#error-message{
+	display: none;
+	color: red;
+}
+
 .project {
 	display: flex;
 	justify-content: center;
